@@ -1,0 +1,20 @@
+{
+  "name": "raptcha",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fix": "php-cs-fixer fix && phpstan analyse",
+    "serve": "powershell ./serve.ps1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZealJared/raptcha.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZealJared/raptcha/issues"
+  },
+  "homepage": "https://github.com/ZealJared/raptcha#readme"
+}

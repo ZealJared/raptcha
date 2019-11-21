@@ -10,8 +10,5 @@
     "require": {},
     "autoload": {
         "classmap": ["./"]
-    },
-    "scripts": {
-        "fix": "php-cs-fixer fix && phpstan analyse"
     }
 }
