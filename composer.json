@@ -1,0 +1,17 @@
+{
+    "description": "Image rotation captcha",
+    "name": "zealj/captcha",
+    "authors": [
+        {
+            "name": "Zeal J Mayfield",
+            "email": "zeal.j.mayfield@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "classmap": ["./"]
+    },
+    "scripts": {
+        "fix": "php-cs-fixer fix && phpstan analyse"
+    }
+}
