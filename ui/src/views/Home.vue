@@ -1,7 +1,7 @@
 <template>
   <form class="card" style="width: 320px;" method="post" @submit.prevent="submit">
     <div class="card-img-top bg-dark" style="padding: 10px;">
-      <img :src="imageSrc" :style="'transform: rotate(' + rotation + 'deg);'">
+      <img :src="imageSrc" :style="'transform: rotate(' + rotation + 'deg);'" width="300" height="300">
     </div>
     <div class="card-body">
       <h5 class="card-title">Rotate To Correct Orientation</h5>
