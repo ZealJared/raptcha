@@ -1,6 +1,6 @@
 export default class Api {
   constructor () {
-    this.baseUrl = 'http://localhost:3000'
+    this.baseUrl = 'https://raptcha-api.zealht.ml'
   }
 
   request (method, url, data) {
