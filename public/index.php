@@ -32,7 +32,7 @@ if (Route::exists($route)) {
   // 404
   $return = (object) [
     'error' => '404 - Page not found.',
-    'details' => sprintf('No handler found for route: %s', $route),
+    'details' => $_SERVER // sprintf('No handler found for route: %s', $route),
   ];
 }
 
