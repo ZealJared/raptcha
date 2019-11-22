@@ -43,6 +43,10 @@ export default {
         if (data.result === 'pass') {
           this.success = 'Good job!'
           // TODO: submit form and challenge ID, back-end will check Challenge::wasPassed(challenge_id)
+          window.parent.postMessage({
+            event: 'pass',
+            challenge_id: this.challengeId
+          }, '*')
         }
       }).catch(error => {
         this.error = error.message
