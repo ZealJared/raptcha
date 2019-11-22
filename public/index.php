@@ -16,6 +16,7 @@ Route::add('POST /check_challenge', function () {
 });
 
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+$_SERVER['PATH_INFO'] = $_SERVER['PATH_INFO'] ?? $_SERVER['REDIRECT_PATH_INFO'];
 $path = preg_replace('~(.)/$~', '$1', $_SERVER['PATH_INFO'] ?? '/');
 $route = sprintf('%s %s', $method, $path);
 $return = null;
