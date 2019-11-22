@@ -9,7 +9,7 @@ class Challenge
 
   public static function getMinimumRotation(): int
   {
-    return 0; // may or may not affect bots, depends on bot code
+    return 0; // may or may not affect bots, depending on bot code
   }
 
   public static function saveImage(): object
