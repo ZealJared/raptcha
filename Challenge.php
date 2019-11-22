@@ -7,6 +7,11 @@ class Challenge
     return 2;
   }
 
+  public static function getMinimumRotation(): int
+  {
+    return 0; // may or may not affect bots, depending on bot code
+  }
+
   public static function saveImage(): object
   {
     $jsonData = file_get_contents('php://input');
@@ -34,7 +39,7 @@ class Challenge
     }
     $file = $files[rand(0, count($files) - 1)];
     $imagick = new Imagick($file);
-    $rotateDegrees = rand(0, 359);
+    $rotateDegrees = rand(0 + self::getMinimumRotation(), 360 - (self::getMinimumRotation() - 1));
     $imagick->rotateImage('#00000000', $rotateDegrees);
     $newWidth = $imagick->getImageWidth();
     $newHeight = $imagick->getImageHeight();
