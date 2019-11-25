@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form method="post" class="raptcha">
+    <label for="email">Send E-mail To:</label>
+    <input id="email" name="email" type="email" required>
+    <button type="submit" id="submitButton" disabled>Submit</button>
+  </form>
+  <script type="module">
+    import { raptcha } from './raptcha.js'
+    const form = document.getElementsByTagName('form')[0]
+    raptcha(() => {
+      document.getElementById('submitButton').removeAttribute('disabled')
+      if (form.reportValidity()) {
+        form.submit()
+      }
+    })
+  </script>
+</body>
+</html>
