@@ -43,7 +43,7 @@ export default {
         this.error = null
         if (data.result === 'pass') {
           this.success = 'Good job!'
-          // TODO: submit form and challenge ID, back-end will check Challenge::wasPassed(challenge_id)
+          // submit form and challenge ID, back-end will check Challenge::wasPassed(challenge_id)
           window.parent.postMessage({
             event: 'pass',
             challenge_id: this.challengeId
@@ -67,6 +67,12 @@ export default {
   },
   mounted () {
     this.getChallenge()
+    window.addEventListener('message', e => {
+      if (e.data === 'reload') {
+        this.error = null
+        this.getChallenge()
+      }
+    })
   }
 }
 </script>
