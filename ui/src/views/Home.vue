@@ -1,7 +1,7 @@
 <template>
   <form class="card" style="width: 320px;" method="post" @submit.prevent="submit">
-    <div class="card-img-top bg-dark" style="padding: 10px;">
-      <img :src="imageSrc" :style="'transform: rotate(' + rotation + 'deg);'" width="300" height="300">
+    <div class="card-img-top bg-dark overflow-hidden" style="padding: 10px;">
+      <img :src="imageSrc" @load="imageLoad" :class="{'invisible': !imageLoaded}" :style="'transform: rotate(' + rotation + 'deg);'" width="300" height="300">
     </div>
     <div class="card-body">
       <h5 class="card-title">Rotate To Correct Orientation</h5>
@@ -29,6 +29,7 @@
 export default {
   data () {
     return {
+      imageLoaded: false,
       success: null,
       error: null,
       imageSrc: '',
@@ -59,6 +60,9 @@ export default {
         this.challengeId = data.challenge_id
         this.rotation = 0
       })
+    },
+    imageLoad () {
+      this.imageLoaded = true
     }
   },
   mounted () {

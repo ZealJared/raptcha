@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit" class="card" style="width: 320px;">
-    <div class="card-img-top bg-dark" style="padding: 10px;">
+    <div class="card-img-top bg-dark overflow-hidden" style="padding: 10px;">
       <canvas width="300" height="300" ref="canvas"></canvas>
     </div>
     <div class="card-body">
