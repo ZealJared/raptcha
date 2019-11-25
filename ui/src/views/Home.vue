@@ -70,6 +70,8 @@ export default {
     window.addEventListener('message', e => {
       if (e.data === 'reload') {
         this.error = null
+        this.success = null
+        this.imageLoaded = false
         this.getChallenge()
       }
     })
