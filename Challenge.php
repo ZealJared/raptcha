@@ -106,12 +106,12 @@ class Challenge
     if (empty($result->id)) {
       throw new Exception('Challenge ID invalid/expired.');
     }
+    // delete after checking, challenge only good for one request
+    $statement = $db->prepare('DELETE FROM challenge WHERE id = :id');
+    $statement->execute(['id' => $id]);
     if (empty($result->pass)) {
       return false;
     }
-    // delete after checking, challenge only good for one request
-    $statement = $db->prepare('DELETE FROM challenge WHERE id = :id');
-    $statement->execute();
     return true;
   }
 
