@@ -63,7 +63,7 @@ class Challenge
   public static function handle(): object
   {
     $db = DB::getConnection();
-    $statement = $db->prepare('DELETE FROM challenge WHERE created_at < DATETIME("now", "-5 minutes");');
+    $statement = $db->prepare('DELETE FROM challenge WHERE updated_at < DATETIME("now", "-5 minutes");');
     $statement->execute();
 
     $challengeId = filter_input(INPUT_POST, 'challenge_id');
