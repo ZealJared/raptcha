@@ -1,2 +1,3 @@
 img/
 vendor/
+data/db.sqlite3
