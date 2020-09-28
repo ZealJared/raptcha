@@ -2,7 +2,7 @@ export function raptcha (successCallback) {
   const origin = 'http://localhost:8080'
   const iframe = document.createElement('iframe')
   iframe.src = origin
-  iframe.frameBorder = 0
+  iframe.style.border = 'none'
   iframe.width = 320
   iframe.height = 580
   const form = document.querySelector('form.raptcha')
