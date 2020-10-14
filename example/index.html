@@ -8,9 +8,15 @@
 </head>
 <body>
   <form method="post" class="raptcha">
-    <label for="email">Send E-mail To:</label>
-    <input id="email" name="email" type="email" required>
-    <button type="submit" id="submitButton" disabled>Submit</button>
+    <div>
+      <label for="email">Send E-mail To:</label>
+    </div>
+    <div>
+      <input id="email" name="email" type="email" required>
+    </div>
+    <div>
+      <button type="submit" id="submitButton" disabled>Submit</button>
+    </div>
   </form>
   <script type="module">
     import { raptcha } from './raptcha.js'

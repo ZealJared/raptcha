@@ -9,7 +9,7 @@ export function raptcha (successCallback) {
   // if form has submit button, place challenge before submit
   const submit = form.querySelector('input[type=submit],button[type=submit]')
   if (submit) {
-    form.insertBefore(iframe, submit)
+    submit.parentElement.insertBefore(iframe, submit)
   } else {
     form.appendChild(iframe)
   }
