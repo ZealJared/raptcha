@@ -10,5 +10,19 @@
     "require": {},
     "autoload": {
         "classmap": ["./"]
+    },
+    "scripts": {
+        "serve-api": "screen -dmS api bash -c 'cd public && php -S localhost:1080'",
+        "stop-api": "screen -S api -X at '#' stuff $'\\003' && screen -S api -X quit",
+        "serve-ui": "screen -dmS ui bash -c 'cd ui && npm run serve'",
+        "stop-ui": "screen -S ui -X at '#' stuff $'\\003' && screen -S ui -X quit",
+        "serve": [
+            "@serve-api",
+            "@serve-ui"
+        ],
+        "stop": [
+            "@stop-api",
+            "@stop-ui"
+        ]
     }
 }
