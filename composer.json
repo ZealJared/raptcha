@@ -12,6 +12,10 @@
         "classmap": ["./"]
     },
     "scripts": {
+        "setup": [
+            "cd ui && npm install",
+            "sudo apt install -y php php-curl php-imagick php-sqlite3"
+        ],
         "serve-api": "screen -dmS api bash -c 'cd public && php -S localhost:1080'",
         "stop-api": "screen -S api -X at '#' stuff $'\\003' && screen -S api -X quit",
         "serve-ui": "screen -dmS ui bash -c 'cd ui && npm run serve'",
