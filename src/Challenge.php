@@ -69,11 +69,11 @@ class Challenge
     $statement = $db->prepare('DELETE FROM challenge WHERE updated_at < DATETIME("now", "-5 minutes");');
     $statement->execute();
 
-    $challengeId = isset($_POST['challenge_id']) && is_string($_POST['challenge_id']) ? $_POST['challenge_id'] : '0';
+    $challengeId = isset($_POST['challenge_id']) && is_string($_POST['challenge_id']) ? $_POST['challenge_id'] : '';
     if (empty($challengeId)) {
       throw new Exception('No challenge_id provided.');
     }
-    $rotation = isset($_POST['rotation']) && is_int($_POST['rotation']) ? $_POST['rotation'] : 0;
+    $rotation = isset($_POST['rotation']) && is_numeric($_POST['rotation']) ? intval($_POST['rotation']) : 0;
     $statement = $db->prepare('SELECT * FROM challenge WHERE id = :id LIMIT 1');
     $statement->execute(['id' => $challengeId]);
     $result = (object) $statement->fetch(PDO::FETCH_ASSOC);

@@ -19,7 +19,7 @@ $method = strtoupper($method);
 if (!in_array($method, ['GET', 'POST'])) {
   $method = 'GET';
 }
-$pathInfo = is_string($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (is_string($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '/');
+$pathInfo = isset($_SERVER['PATH_INFO']) && is_string($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['REDIRECT_PATH_INFO']) && is_string($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '/');
 $_SERVER['PATH_INFO'] = $pathInfo;
 $path = preg_replace('~(.)/$~', '$1', $pathInfo);
 $route = sprintf('%s %s', $method, $path);
