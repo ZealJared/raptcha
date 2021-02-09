@@ -2,9 +2,10 @@
 
 class Route
 {
-  /** @var callable[] */
+  /** @var array<string,Closure():object> */
   private static $routes = [];
 
+  /** @param Closure():object $handler */
   public static function add(string $route, callable $handler): void
   {
     self::$routes[$route] = $handler;

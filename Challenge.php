@@ -18,8 +18,11 @@ class Challenge
     if (empty($jsonData)) {
       $jsonData = '';
     }
-    $image = json_decode($jsonData)->imageDataUrl ?? false;
-    if ($image) {
+    /** @var mixed $imageObject */
+    $imageObject = json_decode($jsonData);
+    /** @var string|false $image */
+    $image = is_object($imageObject) && property_exists($imageObject, 'imageDataUrl') ? $imageObject->imageDataUrl : false;
+    if (is_string($image)) {
       [$meta, $data64] = explode(',', $image);
       $data = base64_decode($data64, true);
       $imagick = new Imagick();
@@ -44,7 +47,7 @@ class Challenge
     $newWidth = $imagick->getImageWidth();
     $newHeight = $imagick->getImageHeight();
     $imagick->setImagePage($newWidth, $newHeight, 0, 0);
-    $imagick->cropImage(300, 300, ($newWidth - 300) / 2, ($newHeight - 300) / 2);
+    $imagick->cropImage(300, 300, intval(($newWidth - 300) / 2), intval(($newHeight - 300) / 2));
     $imageData = $imagick->getImageBlob();
     $imageData64 = base64_encode($imageData);
     $src = sprintf('data: %s;base64,%s', mime_content_type($file), $imageData64);
@@ -66,15 +69,11 @@ class Challenge
     $statement = $db->prepare('DELETE FROM challenge WHERE updated_at < DATETIME("now", "-5 minutes");');
     $statement->execute();
 
-    $challengeId = filter_input(INPUT_POST, 'challenge_id');
+    $challengeId = isset($_POST['challenge_id']) && is_string($_POST['challenge_id']) ? $_POST['challenge_id'] : '0';
     if (empty($challengeId)) {
       throw new Exception('No challenge_id provided.');
     }
-    $rotation = filter_input(INPUT_POST, 'rotation', FILTER_VALIDATE_INT);
-    if (false === $rotation) {
-      throw new Exception('No rotation provided.');
-    }
-
+    $rotation = isset($_POST['rotation']) && is_int($_POST['rotation']) ? $_POST['rotation'] : 0;
     $statement = $db->prepare('SELECT * FROM challenge WHERE id = :id LIMIT 1');
     $statement->execute(['id' => $challengeId]);
     $result = (object) $statement->fetch(PDO::FETCH_ASSOC);
@@ -82,7 +81,7 @@ class Challenge
       throw new Exception('Challenge expired.');
     }
 
-    $error = abs(360 - ($result->rotation + $rotation));
+    $error = abs(360 - (intval($result->rotation) + intval($rotation)));
 
     if ($error <= self::getMaximumPassingError()) {
       $statement = $db->prepare('UPDATE challenge SET pass = 1 WHERE id = :id');
@@ -117,7 +116,7 @@ class Challenge
 
   public static function check(): object
   {
-    $challengeId = filter_input(INPUT_POST, 'challenge_id');
+    $challengeId = isset($_POST['challenge_id']) && is_string($_POST['challenge_id']) ? $_POST['challenge_id'] : '0';
     if (self::wasPassed($challengeId)) {
       return (object) ['passed' => true];
     }

@@ -14,10 +14,14 @@ Route::add('GET /get_challenge', function () {
 Route::add('POST /check_challenge', function () {
   return Challenge::check();
 });
-
-$method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-$_SERVER['PATH_INFO'] = $_SERVER['PATH_INFO'] ?? $_SERVER['REDIRECT_PATH_INFO'];
-$path = preg_replace('~(.)/$~', '$1', $_SERVER['PATH_INFO'] ?? '/');
+$method = is_string($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
+$method = strtoupper($method);
+if(!in_array($method, ['GET', 'POST'])) {
+  $method = 'GET';
+}
+$pathInfo = is_string($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (is_string($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '/');
+$_SERVER['PATH_INFO'] = $pathInfo;
+$path = preg_replace('~(.)/$~', '$1', $pathInfo);
 $route = sprintf('%s %s', $method, $path);
 $return = null;
 if (Route::exists($route)) {

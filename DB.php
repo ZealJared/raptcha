@@ -2,12 +2,11 @@
 
 class DB
 {
-  /** @var PDO */
-  private static $connection;
+  private static PDO|null $connection = null;
 
   public static function getConnection(): PDO
   {
-    if (empty(self::$connection)) {
+    if (is_null(self::$connection)) {
       self::$connection = new PDO(sprintf('sqlite:%s/data/db.sqlite3', __DIR__));
       self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

@@ -2,3 +2,4 @@ img/*
 !img/placeholder.md
 vendor/
 data/db.sqlite3
+composer.lock
