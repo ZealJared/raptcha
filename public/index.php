@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-require_once '../common.php';
+require_once '../src/common.php';
 
 Route::add('POST /add_image', function () {
   return Challenge::saveImage();
@@ -16,7 +16,7 @@ Route::add('POST /check_challenge', function () {
 });
 $method = is_string($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 $method = strtoupper($method);
-if(!in_array($method, ['GET', 'POST'])) {
+if (!in_array($method, ['GET', 'POST'])) {
   $method = 'GET';
 }
 $pathInfo = is_string($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (is_string($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '/');

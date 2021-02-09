@@ -3,3 +3,5 @@ img/*
 vendor/
 data/db.sqlite3
 composer.lock
+/tools/
+/.php_cs.cache

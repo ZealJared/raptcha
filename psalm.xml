@@ -7,12 +7,9 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <file name="Challenge.php" />
-        <file name="common.php" />
-        <file name="DB.php" />
-        <file name="Route.php" />
-        <file name="example/sendEmail.php" />
-        <file name="public/index.php" />
+        <directory name="src" />
+        <directory name="example" />
+        <directory name="public" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
