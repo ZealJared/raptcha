@@ -9,7 +9,7 @@
     ],
     "require": {},
     "autoload": {
-        "classmap": ["./"]
+        "classmap": ["./src"]
     },
     "scripts": {
         "setup": [
